@@ -17,7 +17,7 @@ jobs:
         uses: Ana06/get-changed-files@v2.3.0name: Check PR for Feature File
 
 on:
-  pull_request:
+  pull_request: # boobies
     branches: [ "main" ]
 
 jobs:
