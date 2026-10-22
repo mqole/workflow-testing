@@ -1,4 +1,4 @@
-name: Check PR for Feature File #boobies
+name: Check PR for Feature File
 
 on:
   pull_request:
@@ -18,9 +18,8 @@ jobs:
 
       - name: Generate Feature File summary
         id: feature
-        uses: mqole/featurefile-pr-action@416e61cea4cb948d93fb432409a09a6261f53274
+        uses: mqole/featurefile-pr-action@417a5f03fb5f49024a3961d6b7e61ac1cebe3807
         with:
-          prtext:
           modified: ${{ steps.files.outputs.modified }}
           removed: ${{ steps.files.outputs.removed }}
           added: ${{ steps.files.outputs.added }}
@@ -35,7 +34,7 @@ jobs:
         with:
           issue-number: ${{ github.event.number }}
           comment-author: 'github-actions[bot]'
-          body-includes: RSI Diff Bot
+          body-includes: Feature File Summary
 
       - name: Create comment if it doesn't exist
         if: steps.fc.outputs.comment-id == ''
