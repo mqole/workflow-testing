@@ -18,7 +18,7 @@ jobs:
 
       - name: Generate Feature File summary
         id: feature
-        uses: ./
+        uses: mqole/featurefile-pr-action@f879812dcb52fdfa470018abc01e9f39d5dec707
         with:
           prtext:
           modified: ${{ steps.files.outputs.modified }}
