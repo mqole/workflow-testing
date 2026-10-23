@@ -4,6 +4,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
+permissions:
+  issues: write
+  pull-requests: write
+
 jobs:
   check:
     name: Check PR
@@ -43,9 +47,6 @@ jobs:
           issue-number: ${{ github.event.number }}
           body: |
             ${{ steps.feature.outputs.summary }}
-        permissions:
-          issues: write
-          pull-requests: write
 
       - name: Update comment if it exists
         if: steps.fc.outputs.comment-id != ''
@@ -55,10 +56,6 @@ jobs:
           edit-mode: replace
           body: |
             ${{ steps.feature.outputs.summary }}
-          issues: write
-        permissions:
-          issues: write
-          pull-requests: write
 
       - name: Update comment to read that it has been edited
         if: steps.fc.outputs.comment-id != ''
@@ -68,6 +65,3 @@ jobs:
           edit-mode: append
           body: |
             Edit: updated after ${{ github.event.pull_request.head.sha }}
-        permissions:
-          issues: write
-          pull-requests: write
