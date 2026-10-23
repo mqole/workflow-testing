@@ -1,4 +1,4 @@
-name: Check PR for Feature File
+name: Check PR for Feature Filez
 
 on:
   pull_request:
