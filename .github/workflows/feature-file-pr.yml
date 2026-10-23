@@ -22,7 +22,7 @@ jobs:
 
       - name: Generate Feature File summary
         id: feature
-        uses: mqole/featurefile-pr-action@712ebb41031442e5d20975e8db3333452b425d3e
+        uses: mqole/featurefile-pr-action@cbe67b63d92cd05df1a9675e8f7f2d7290d6a46b
         with:
           modified: ${{ steps.files.outputs.modified }}
           removed: ${{ steps.files.outputs.removed }}
@@ -64,4 +64,4 @@ jobs:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           edit-mode: append
           body: |
-            \n _Edit: updated after ${{ github.event.pull_request.head.sha }}_
+            _Edit: updated after ${{ github.event.pull_request.head.sha }}_
