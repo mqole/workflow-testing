@@ -22,7 +22,7 @@ jobs:
 
       - name: Generate Feature File summary
         id: feature
-        uses: mqole/featurefile-pr-action@dae0754ea04ec83670e645790a41d30461709f4c
+        uses: mqole/featurefile-pr-action@abc785173ba7a097d9f9f4f892faa88b809bf325
         with:
           modified: ${{ steps.files.outputs.modified }}
           removed: ${{ steps.files.outputs.removed }}
