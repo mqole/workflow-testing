@@ -1,6 +1,6 @@
 git commit -a -m update
 git push
 git checkout pr
-git pull origin main -s theirs
+git merge main --commit
 git push
 git checkout main
