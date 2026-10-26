@@ -71,3 +71,4 @@ jobs:
           edit-mode: append
           body: |
             Edit: updated after ${{ github.event.pull_request.head.sha }}
+            added files: ${{ needs.jobs.check.steps.feature.outputs.addFiles }}
