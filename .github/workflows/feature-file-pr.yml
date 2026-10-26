@@ -22,7 +22,7 @@ jobs:
 
       - name: Generate Feature File summary
         id: feature
-        uses: mqole/featurefile-pr-action@9a3dab1fc931708ef6f03db57a9bf3bab62dc947
+        uses: mqole/featurefile-pr-action@3ce8bdfb8890d764803b91f3236a659c47a0c226
         with:
           modified: ${{ steps.files.outputs.modified }}
           removed: ${{ steps.files.outputs.removed }}
@@ -31,7 +31,12 @@ jobs:
           basesha: ${{ github.event.pull_request.base.sha }}
           headname: ${{ github.event.pull_request.head.repo.full_name }}
           headsha: ${{ github.event.pull_request.head.sha }}
-
+  
+  comment:
+    name: Leave Comment
+    runs-on: ubuntu-latest
+    if: jobs.steps.feature.outputs.body-found == 'true'
+    steps:
       - name: Potentially find comment
         uses: peter-evans/find-comment@b30e6a3c0ed37e7c023ccd3f1db5c6c0b0c23aad #v4
         id: fc
@@ -64,4 +69,4 @@ jobs:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           edit-mode: append
           body: |
-            _Edit: updated after ${{ github.event.pull_request.head.sha }}_
+            Edit: updated after ${{ github.event.pull_request.head.sha }}
