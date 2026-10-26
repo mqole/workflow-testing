@@ -1,4 +1,4 @@
-name: Check PR for Feature Filez
+name: Check PR for Feature Files
 
 on:
   pull_request:
@@ -22,7 +22,7 @@ jobs:
 
       - name: Generate Feature File summary
         id: feature
-        uses: mqole/featurefile-pr-action@3ce8bdfb8890d764803b91f3236a659c47a0c226
+        uses: mqole/featurefile-pr-action@1d6de080d5edb175dc845d977e94c915cc7faf2c
         with:
           modified: ${{ steps.files.outputs.modified }}
           removed: ${{ steps.files.outputs.removed }}
@@ -35,7 +35,8 @@ jobs:
   comment:
     name: Leave Comment
     runs-on: ubuntu-latest
-    if: jobs.steps.feature.outputs.body-found == 'true'
+    needs: check
+    if: ${{ needs.jobs.check.steps.feature.outputs.body-found == 'true' }}
     steps:
       - name: Potentially find comment
         uses: peter-evans/find-comment@b30e6a3c0ed37e7c023ccd3f1db5c6c0b0c23aad #v4
