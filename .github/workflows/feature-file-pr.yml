@@ -35,6 +35,7 @@ jobs:
   comment:
     name: Leave Comment
     runs-on: ubuntu-latest
+    needs: check
     if: needs.jobs.check.steps.feature.outputs.body-found == 'true'
     steps:
       - name: Potentially find comment
