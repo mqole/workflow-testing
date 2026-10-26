@@ -1,4 +1,4 @@
-name: Check PR for Feature Filez
+name: Check PR for Feature Files
 
 on:
   pull_request:
@@ -22,7 +22,7 @@ jobs:
 
       - name: Generate Feature File summary
         id: feature
-        uses: mqole/featurefile-pr-action@3ce8bdfb8890d764803b91f3236a659c47a0c226
+        uses: mqole/featurefile-pr-action@ca57dfc25acc97e57c82d0e4669d9050a90cf143
         with:
           modified: ${{ steps.files.outputs.modified }}
           removed: ${{ steps.files.outputs.removed }}
