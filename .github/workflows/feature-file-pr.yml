@@ -22,7 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Get changed files
+      - name: Get changed filesz
         id: files
         uses: Ana06/get-changed-files@a6591c950d92e67595be3ccd71324cef32c4b7ab #v2.1.0
 
