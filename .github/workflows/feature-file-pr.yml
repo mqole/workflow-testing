@@ -58,7 +58,7 @@ jobs:
         with:
           issue-number: ${{ github.event.number }}
           body: |
-            ${{ steps.feature.outputs.summary }}
+            ${{ needs.check.outputs.summary }}
 
       - name: Update comment if it exists
         if: steps.fc.outputs.comment-id != ''
@@ -67,7 +67,7 @@ jobs:
           comment-id: ${{ steps.fc.outputs.comment-id }}
           edit-mode: replace
           body: |
-            ${{ steps.feature.outputs.summary }}
+            ${{ needs.check.outputs.summary }}
 
       - name: Update comment to read that it has been edited
         if: steps.fc.outputs.comment-id != ''
@@ -77,4 +77,4 @@ jobs:
           edit-mode: append
           body: |
             Edit: updated after ${{ github.event.pull_request.head.sha }}
-            added files: ${{ needs.jobs.check.steps.feature.outputs.addFiles }}
+            added files: ${{ needs.check.outputs.addFiles }}
