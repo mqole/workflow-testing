@@ -38,42 +38,21 @@ jobs:
           headname: ${{ github.event.pull_request.head.repo.full_name }}
           headsha: ${{ github.event.pull_request.head.sha }}
 
-  comment: # TODO- make this all one job
-    name: Leave Comment
+  write:
+    name: Write Feature File
     runs-on: ubuntu-latest
     needs: check
     if: ${{ needs.check.outputs.body-found == 'true' }}
     steps:
-      - name: Potentially find comment
-        uses: peter-evans/find-comment@b30e6a3c0ed37e7c023ccd3f1db5c6c0b0c23aad #v4
-        id: fc
+      - name: Checkout Main
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          issue-number: ${{ github.event.number }}
-          comment-author: 'github-actions[bot]'
-          body-includes: Feature File Summary
-
-      - name: Create comment if it doesn't exist
-        if: steps.fc.outputs.comment-id == ''
-        uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 #v5
+          path: main
+      - name: Get all existing Feature Files
+        uses: jeertmans/filesfinder@17d855f54a1359a5f1aad0f02fd0a3d110decf0e # v0.5.1
+        id: ff 
         with:
-          issue-number: ${{ github.event.number }}
-          body: |
-            ${{ needs.check.outputs.summary }}
-
-      - name: Update comment if it exists
-        if: steps.fc.outputs.comment-id != ''
-        uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 #v5
-        with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
-          edit-mode: replace
-          body: |
-            ${{ needs.check.outputs.summary }}
-
-      - name: Update comment to read that it has been edited
-        if: steps.fc.outputs.comment-id != ''
-        uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 #v5
-        with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
-          edit-mode: append
-          body: |
-            Edit: updated after ${{ github.event.pull_request.head.sha }}
+          args: -r "docs/.*\.md"
+      - name: DEBUG, print files
+        run: |
+          echo ${{ steps.ff.outputs.files }}
