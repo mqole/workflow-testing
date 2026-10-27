@@ -31,7 +31,11 @@ jobs:
           basesha: ${{ github.event.pull_request.base.sha }}
           headname: ${{ github.event.pull_request.head.repo.full_name }}
           headsha: ${{ github.event.pull_request.head.sha }}
-  
+      
+      - name: bugtest
+        run: |
+          echo ${{ steps.feature.outputs.body-found }}
+
   comment:
     name: Leave Comment
     runs-on: ubuntu-latest
