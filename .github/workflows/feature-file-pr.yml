@@ -36,6 +36,16 @@ jobs:
         run: |
           echo ${{ steps.feature.outputs.body-found }}
 
+  bugtest2:
+    name: 2nd bugtest
+    runs-on: ubuntu-latest
+    needs: check
+    steps:
+      - name: bugtest22
+        run: |
+          echo ${{ needs.check.outputs.body-found }}
+          echo ${{ needs.check.outputs.body-found == 'true' }}
+
   comment:
     name: Leave Comment
     runs-on: ubuntu-latest
