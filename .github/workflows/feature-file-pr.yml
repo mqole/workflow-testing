@@ -50,4 +50,4 @@ jobs:
           path: main
       - name: Get all existing Feature Files
         run: |
-          ls
+          cd main
