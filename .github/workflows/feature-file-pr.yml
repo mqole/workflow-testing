@@ -49,6 +49,7 @@ jobs:
       - name: Checkout Main
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          repository: syndicate-ss14/docs
           path: main
       - name: Get all existing Feature Files
         id: files
@@ -56,12 +57,3 @@ jobs:
           cd main/docs
           ls -1 | tr '\n' ','
           echo "fileList=$(ls -1 | tr '\n' ',')" >> $GITHUB_OUTPUT
-
-  print:
-    name: Debug print
-    runs-on: ubuntu-latest
-    needs: write
-    steps:
-      - name: Print Debug
-        run: |
-          echo ${{ needs.write.outputs.fileList }}
