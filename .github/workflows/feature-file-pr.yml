@@ -51,3 +51,4 @@ jobs:
       - name: Get all existing Feature Files
         run: |
           cd main
+          ls
