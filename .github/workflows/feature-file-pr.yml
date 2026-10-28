@@ -49,10 +49,5 @@ jobs:
         with:
           path: main
       - name: Get all existing Feature Files
-        uses: jeertmans/filesfinder@17d855f54a1359a5f1aad0f02fd0a3d110decf0e # v0.5.1
-        id: ff 
-        with:
-          args: -r "docs/.*\.md"
-      - name: DEBUG, print files
         run: |
-          echo ${{ steps.ff.outputs.files }}
+          ls
