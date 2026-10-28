@@ -54,8 +54,8 @@ jobs:
         id: files
         run: |
           cd main/docs
-          ls | tail -f
-          echo "fileList=$(ls | tail -f)" >> $GITHUB_OUTPUT
+          ls -1 | tr '\n' ','
+          echo "fileList=$(ls -1 | tr '\n' ',')" >> $GITHUB_OUTPUT
 
   print:
     name: Debug print
