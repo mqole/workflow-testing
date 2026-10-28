@@ -53,7 +53,8 @@ jobs:
       - name: Get all existing Feature Files
         id: files
         run: |
-          echo "cd main/docs"
+          cd main/docs
+          echo "ls"
           echo "fileList=$(ls)" >> $GITHUB_OUTPUT
 
   print:
