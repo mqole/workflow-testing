@@ -54,7 +54,7 @@ jobs:
         id: files
         run: |
           echo "cd main/docs"
-          echo "fileList=ls" >> $GITHUB_OUTPUT
+          echo "fileList=$(ls)" >> $GITHUB_OUTPUT
 
   print:
     name: Debug print
