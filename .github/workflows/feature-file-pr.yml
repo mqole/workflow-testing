@@ -61,7 +61,7 @@ jobs:
           echo ${fileList} # debug
           echo "${fileList}" >> $GITHUB_OUTPUT
           cd Documents/Conventions # TESTING
-          echo "ls" # TESTING
+          echo ls # TESTING
           # generate array
           declare -A array
           for file in *.md; do
@@ -70,7 +70,8 @@ jobs:
           done
           # convert array to json
           for key in "${!array[@]}"; do
-            value="${array[$key]}"
-            echo "{\"key\": \"$key\", \"value\": \"$value\"}"
+            key_escaped="${key//\"/\\\"}" # Replace " with \"
+            value_escaped="${user[$key]//\"/\\\"}" # Replace " with \"
+            echo "{\"key\": \"$key_escaped\", \"value\": \"$value_escaped\"}"
           done | jq -s 'baseFileContents'
           echo "${baseFileContents} >> $GITHUB_OUTPUT"
