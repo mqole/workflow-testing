@@ -63,5 +63,6 @@ jobs:
           echo "ls"
           for file in *.md; do
           baseFileContents[$file]="cat $file"
+          echo "file: $file"
           done
-          echo "$baseFileContents"
+          echo "array: ${baseFileContents[@]}"
