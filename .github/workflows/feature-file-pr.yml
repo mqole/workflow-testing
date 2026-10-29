@@ -57,9 +57,8 @@ jobs:
         run: |
           # get files
           cd main/docs
-          fileList=$(ls -1 | tr '\n' ',')
-          echo ${fileList} # debug
-          echo "${fileList}" >> $GITHUB_OUTPUT
+          echo $(ls -1 | tr '\n' ',') # debug
+          echo "fileList=$(ls -1 | tr '\n' ',')" >> $GITHUB_OUTPUT
           cd Documents/Conventions # TESTING
           echo ls # TESTING
 
