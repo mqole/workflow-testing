@@ -60,7 +60,7 @@ jobs:
           echo ${files}
           # get array of all feature files we need to consider,
           for element in ${{ needs.check.outputs.modFiles }} ${{ needs.check.outputs.addFiles }} ${{ needs.check.outputs.remFiles }} do
-            filesChanged+=("element")
+          filesChanged+=("element")
           done
           echo ${{ needs.check.outputs.modFiles }}
           echo ${{ needs.check.outputs.addFiles }}
