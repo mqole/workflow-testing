@@ -72,9 +72,6 @@ jobs:
           path: master
       - name: Get contents of existing Feature Files
         run: |
-          echo $(ls)
           cd master/py
-          echo $(ls)
-
           python featurefile-fetch.py ${{ steps.files.outputs.fileList }}
 
