@@ -72,6 +72,6 @@ jobs:
       - name: Get contents of existing Feature Files
         run: |
           echo $(ls)
-          cd main
-          echo $(ls)
+          cd master/py
+          python featurefile-fetch.py ${{ files.outputs.fileList }}
 
