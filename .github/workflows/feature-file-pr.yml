@@ -71,14 +71,9 @@ jobs:
           done
 
           # convert array to json
-          echo "getting key"
           for key in "${!array[@]}"; do
-            echo "getting key escape"
             key_escaped="${key//\"/\\\"}" # Replace " with \"
-            echo "key_escaped -> ${key_escaped}"
-            echo "getting value escape"
             value_escaped="${array[$key]//\"/\\\"}" # Replace " with \"
-            echo "value_escaped -> ${value_escaped}"
-            echo "{\"key\": \"$key_escaped\", \"value\": \"$value_escaped\"}"
-          done
-          #echo "baseFileContents=${baseFileContents} >> $GITHUB_OUTPUT"
+            echo "{\"key\": \"$key_escaped\", \"value\": \"$value_escaped:0:100\"}" # truncate value preview
+          done | jq -s 'baseFileContents'
+          echo "baseFileContents=${baseFileContents} >> $GITHUB_OUTPUT"
