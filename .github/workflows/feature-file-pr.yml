@@ -57,7 +57,7 @@ jobs:
           # get files from docs repo
           cd main/docs
           files=($(ls *.md))
-          echo files
+          echo ${files}
           # get array of all feature files we need to consider
-          filesChanged=("${${{ needs.check.outputs.modFiles }}}[@]" "${${{ needs.check.outputs.addFiles }}}[@]" "${${{ needs.check.outputs.remFiles }}}[@]")
-          echo filesChanged
+          filesChanged=("${{ needs.check.outputs.modFiles }}" "${{ needs.check.outputs.addFiles }}" "${{ needs.check.outputs.remFiles }}")
+          echo ${filesChanged}
