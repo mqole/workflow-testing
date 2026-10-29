@@ -74,7 +74,8 @@ jobs:
 
           for key in "${!array[@]}"; do
             value="${array[$key]}"
-            echo "{\"key\": \"$key\", \"value\": \"$value:0:100\"}" # truncate value preview, debug
-            echo "{\"key\": \"$key\", \"value\": \"$value:0:100\"}" | jq -R | jq -s
+            truncValue=$(echo "$value" | head -c 100)
+            echo "{"key": "$key", "value": "$truncValue"}" # truncate value preview, debug
+            echo "{"key": "$key", "value": "$truncValue"}" | jq -R | jq -s
           done
           #echo "baseFileContents=${baseFileContents} >> $GITHUB_OUTPUT"
