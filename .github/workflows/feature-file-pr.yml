@@ -62,9 +62,9 @@ jobs:
           declare -A baseFileContents
           echo "ls"
           for file in *.md; do
-          baseFileContents[$file]="cat $file"
+          baseFileContents[$file]="$(cat $file)"
           echo "file: $file"
           done
-          echo "array: ${baseFileContents[@]}"
-          echo "${baseFileContents}"
+          echo "keys: ${baseFileContents[@]}"
+          echo "values: ${!baseFileContents[@]}"
           echo "${baseFileContents} >> $GITHUB_OUTPUT"
