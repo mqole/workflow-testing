@@ -71,9 +71,14 @@ jobs:
           done
 
           # convert array to json
+          echo "getting key"
           for key in "${!array[@]}"; do
+            echo "getting key escape"
             key_escaped="${key//\"/\\\"}" # Replace " with \"
+            echo "key_escaped -> ${key_escaped}"
+            echo "getting value escape"
             value_escaped="${user[$key]//\"/\\\"}" # Replace " with \"
+            echo "value_escaped -> ${value_escaped}"
             echo "{\"key\": \"$key_escaped\", \"value\": \"$value_escaped\"}"
           done
-          #echo "${baseFileContents} >> $GITHUB_OUTPUT"
+          #echo "baseFileContents=${baseFileContents} >> $GITHUB_OUTPUT"
