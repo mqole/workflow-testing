@@ -43,8 +43,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: check
     if: ${{ needs.check.outputs.body-found == 'true' }}
-    outputs:
-      fileList: ${{ steps.files.outputs.fileList }}
+    # outputs:
+    #   fileList: ${{ steps.getfiles.outputs.fileList }}
     steps:
       - name: Checkout Main
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -52,8 +52,12 @@ jobs:
           repository: syndicate-ss14/docs
           path: main
       - name: Get all existing Feature Files
-        id: files
+        id: getfiles
         run: |
+          # get files from docs repo
           cd main/docs
-          ls -1 | tr '\n' ','
-          echo "fileList=$(ls -1 | tr '\n' ',')" >> $GITHUB_OUTPUT
+          files=($(ls \*.md))
+          echo files
+          # get array of all feature files we need to consider
+          filesChanged=("${${{ needs.check.outputs.modFiles }}}[@]" "${${{ needs.check.outputs.addFiles }}}[@]" "${${{ needs.check.outputs.remFiles }}}[@]")
+          echo filesChanged
