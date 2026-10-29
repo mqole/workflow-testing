@@ -77,7 +77,7 @@ jobs:
             key_escaped="${key//\"/\\\"}" # Replace " with \"
             echo "key_escaped -> ${key_escaped}"
             echo "getting value escape"
-            value_escaped="${user[$key]//\"/\\\"}" # Replace " with \"
+            value_escaped="${array[$key]//\"/\\\"}" # Replace " with \"
             echo "value_escaped -> ${value_escaped}"
             echo "{\"key\": \"$key_escaped\", \"value\": \"$value_escaped\"}"
           done
