@@ -66,4 +66,5 @@ jobs:
           echo "file: $file"
           done
           echo "array: ${baseFileContents[@]}"
+          echo "${baseFileContents}"
           echo "${baseFileContents} >> $GITHUB_OUTPUT"
