@@ -59,7 +59,7 @@ jobs:
           cd main/docs
           fileList=$(ls -1 | tr '\n' ',')
           echo ${fileList} # debug
-          echo "fileList = ${fileList}" >> $GITHUB_OUTPUT
+          echo "fileList=${fileList}" >> $GITHUB_OUTPUT
           cd Documents/Conventions # TESTING
           echo ls # TESTING
 
