@@ -58,4 +58,4 @@ jobs:
           cd main/docs
           ls -1 | tr '\n' ','
           echo "fileList=$(ls -1 | tr '\n' ',')" >> $GITHUB_OUTPUT
-          cat *.md
+          cat
