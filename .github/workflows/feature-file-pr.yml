@@ -60,22 +60,11 @@ jobs:
           fileList=$(ls -1 | tr '\n' ',')
           echo ${fileList} # debug
           echo "fileList=${fileList}" >> $GITHUB_OUTPUT
-          cd Documents/Conventions # TESTING
-          echo ls # TESTING
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Get contents of existing Feature Files
+        run: |
+          echo $(ls)
 
-          # generate array
-          declare -A array
-          for file in *.md; do
-            array[$file]="$(cat $file)"
-            echo "file: $file"
-          done
-
-          # convert array to json
-
-          for key in "${!array[@]}"; do
-            value="${array[$key]}"
-            truncValue=$(echo "$value" | head -c 100)
-            echo "{"key": "$key", "value": "$truncValue"}" # truncate value preview, debug
-            echo "{"key": "$key", "value": "$truncValue"}" | jq -R | jq -s
-          done
-          #echo "baseFileContents=${baseFileContents} >> $GITHUB_OUTPUT"
