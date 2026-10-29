@@ -77,5 +77,5 @@ jobs:
             truncValue=$(echo "$value" | head -c 100)
             echo "{"key": "$key", "value": "$truncValue"}" # truncate value preview, debug
             echo "{"key": "$key", "value": "$truncValue"}" | jq -R | jq -s
-          done | jq -s 'from_entries'
+          done
           #echo "baseFileContents=${baseFileContents} >> $GITHUB_OUTPUT"
