@@ -73,5 +73,5 @@ jobs:
         run: |
           echo $(ls)
           cd master/py
-          python featurefile-fetch.py ${{ write.outputs.fileList }}
+          python featurefile-fetch.py ${{ steps.files.outputs.fileList }}
 
