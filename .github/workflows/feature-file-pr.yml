@@ -45,6 +45,7 @@ jobs:
     if: ${{ needs.check.outputs.body-found == 'true' }}
     outputs:
       fileList: ${{ steps.files.outputs.fileList }}
+      baseFileContents: ${{ steps.files.outputs.baseFileContents }}
     steps:
       - name: Checkout Main
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -57,3 +58,4 @@ jobs:
           cd main/docs
           ls -1 | tr '\n' ','
           echo "fileList=$(ls -1 | tr '\n' ',')" >> $GITHUB_OUTPUT
+          cat *.md
