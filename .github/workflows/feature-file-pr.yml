@@ -64,4 +64,4 @@ jobs:
           for file in *.md; do
           baseFileContents[$file]="cat $file"
           done
-          echo "baseFileContents" >> $GITHUB_OUTPUT
+          echo "$baseFileContents"
