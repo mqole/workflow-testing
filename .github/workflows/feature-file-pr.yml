@@ -76,5 +76,5 @@ jobs:
             key_escaped="${key//\"/\\\"}" # Replace " with \"
             value_escaped="${array[$key]//\"/\\\"}" # Replace " with \"
             echo "{\"key\": \"$key_escaped\", \"value\": \"$value_escaped:0:100\"}" # truncate value preview
-          done | echo
-          echo "baseFileContents=${baseFileContents} >> $GITHUB_OUTPUT"
+          done | echo jq -s 'from_entries'
+          #echo "baseFileContents=${baseFileContents} >> $GITHUB_OUTPUT"
