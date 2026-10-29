@@ -59,4 +59,8 @@ jobs:
           ls -1 | tr '\n' ','
           echo "fileList=$(ls -1 | tr '\n' ',')" >> $GITHUB_OUTPUT
           cd Documents/Conventions
-          cat *.md
+          echo "ls"
+          for file in *.md; do
+          echo "file -> $file"
+          echo "cat $file"
+          done
