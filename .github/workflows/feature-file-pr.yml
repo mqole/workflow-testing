@@ -55,16 +55,17 @@ jobs:
       - name: Get all existing Feature Files
         id: files
         run: |
+          jq --version
           cd main/docs
-          ls -1 | tr '\n' ','
-          echo "fileList=$(ls -1 | tr '\n' ',')" >> $GITHUB_OUTPUT
+          fileList=$(ls -1 | tr '\n' ',')
+          echo ${fileList} # debug
+          echo "${fileList}" >> $GITHUB_OUTPUT
           cd Documents/Conventions
           declare -A baseFileContents
           echo "ls"
           for file in *.md; do
-          baseFileContents[$file]="$(cat $file)"
-          echo "file: $file"
+            baseFileContents[$file]="$(cat $file)"
+            echo "file: $file"
           done
-          echo "keys: ${baseFileContents[@]}"
-          echo "values: ${!baseFileContents[@]}"
+          echo "keys: ${!baseFileContents[@]}"
           echo "${baseFileContents} >> $GITHUB_OUTPUT"
