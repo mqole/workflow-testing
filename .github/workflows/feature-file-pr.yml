@@ -59,5 +59,8 @@ jobs:
           files=($(ls *.md))
           echo ${files}
           # get array of all feature files we need to consider
-          filesChanged=("${{ needs.check.outputs.modFiles }}" "${{ needs.check.outputs.addFiles }}" "${{ needs.check.outputs.remFiles }}")
+          filesChanged=(${{ needs.check.outputs.modFiles }} ${{ needs.check.outputs.addFiles }} ${{ needs.check.outputs.remFiles }})
+          echo ${{ needs.check.outputs.modFiles }}
+          echo ${{ needs.check.outputs.addFiles }}
+          echo ${{ needs.check.outputs.remFiles }}
           echo ${filesChanged}
