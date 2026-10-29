@@ -62,16 +62,18 @@ jobs:
           echo "${fileList}" >> $GITHUB_OUTPUT
           cd Documents/Conventions # TESTING
           echo ls # TESTING
+
           # generate array
           declare -A array
           for file in *.md; do
             array[$file]="$(cat $file)"
             echo "file: $file"
           done
+
           # convert array to json
           for key in "${!array[@]}"; do
             key_escaped="${key//\"/\\\"}" # Replace " with \"
             value_escaped="${user[$key]//\"/\\\"}" # Replace " with \"
             echo "{\"key\": \"$key_escaped\", \"value\": \"$value_escaped\"}"
-          done | jq -s 'baseFileContents'
+          done | jq -s 'baseFileContents' --args
           echo "${baseFileContents} >> $GITHUB_OUTPUT"
