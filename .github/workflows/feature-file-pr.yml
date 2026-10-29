@@ -67,6 +67,6 @@ jobs:
       - name: Get contents of existing Feature Files
         run: |
           echo $(ls)
-          cd tools
+          cd main
           echo $(ls)
 
